@@ -1,18 +1,32 @@
 Rails.application.routes.draw do
-  get 'favorites/create'
-  get 'favorites/destroy'
-  get 'posts/index'
-  get 'posts/new'
-  get 'posts/create'
-  get 'sessions/new'
-  get 'sessions/create'
-  get 'sessions/destroy'
-  # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
-
-  # Reveal health status on /up that returns 200 if the app boots with no exceptions, otherwise 500.
-  # Can be used by load balancers and uptime monitors to verify that the app is live.
+  # アプリ稼働確認用
   get "up" => "rails/health#show", as: :rails_health_check
 
-  # Defines the root path route ("/")
-  # root "posts#index"
+  # ルート
+  root to: 'posts#index'
+
+  # サインアップ
+  get '/signup', to: 'users#new'
+  post '/signup', to: 'users#create'
+
+  # ログイン/ログアウト
+  get '/login', to: 'sessions#new'
+  post '/login', to: 'sessions#create'
+  delete '/logout', to: 'sessions#destroy'
+
+  # ユーザ情報（マイページ）
+  resources :users, only: [:new, :create, :show], path_names: { show: 'profile' }
+
+  # 投稿
+  resources :posts, only: [:index, :new, :create] do
+    collection do
+      # 24時間以内の投稿一覧
+      get 'recent', to: 'posts#index'
+      # お気に入り投稿一覧
+      get 'favorites', to: 'posts#favorites'
+    end
+
+    # お気に入り登録/解除
+    resource :favorite, only: [:create, :destroy]
+  end
 end
