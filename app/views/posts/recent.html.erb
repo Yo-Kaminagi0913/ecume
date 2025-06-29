@@ -1,0 +1,7 @@
+<h1 class="sr-only">History</h1>
+<ul class="divide-y divide-gray-200">
+  <% @posts.each do |post| %>
+    <% item = OpenStruct.new(title: post.content.truncate(20), subtitle: time_ago_in_words(post.created_at) + '前') %>
+    <%= render partial: "post_item", locals: { item: item } %>
+  <% end %>
+</ul>

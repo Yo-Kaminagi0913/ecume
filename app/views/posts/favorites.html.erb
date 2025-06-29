@@ -1,0 +1,8 @@
+<!-- app/views/posts/favorites.html.erb -->
+<h1 class="sr-only">Favorites</h1>
+<ul class="divide-y divide-gray-200">
+  <% @favorite_posts.each do |post| %>
+    <% item = OpenStruct.new(title: post.content.truncate(20), subtitle: time_ago_in_words(post.created_at) + '前') %>
+    <%= render partial: "post_item", locals: { item: item } %>
+  <% end %>
+</ul>
