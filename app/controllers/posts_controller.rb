@@ -1,15 +1,16 @@
 class PostsController < ApplicationController
-  before_action :require_login
+  
   def index
-    @posts = Post.recent.order(created_at: :desc)
+    # @posts = Post.recent.order(created_at: :desc)
+    @posts = Post.all
   end
 
   def new
-    @post = current_user.posts.build
+    @post = Post.new
   end
 
   def create
-    @post = current_user.posts.build(post_params)
+    @post = Post.create(post_params)
     if @post.save
       redirect_to root_path, notice: "投稿しました"
     else
@@ -29,6 +30,6 @@ class PostsController < ApplicationController
   private
 
   def post_params
-    params.require(:post).permit(:content)
+    params.require(:post).permit(:content).merge(user_id: current_user.id)
   end
 end

@@ -95,18 +95,13 @@
   </main>
 
   <!-- フッター：投稿フォーム -->
-  <footer class="bg-white p-4 shadow-inner">
-    <form action="/posts" method="post" class="flex space-x-2">
-      <!-- Rails の場合は CSRF トークンを忘れずに -->
-      <!-- <%= hidden_field_tag :authenticity_token, form_authenticity_token %> -->
-      <input type="text" name="content" placeholder="Enter Text"
-             class="flex-1 border border-gray-300 rounded-l-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-teal-200"/>
-      <button type="submit"
-              class="bg-teal-100 text-black font-semibold px-4 rounded-r-lg hover:bg-teal-200 transition">
-        + Button
-      </button>
-    </form>
-  </footer>
+    <%= form_with model: @post, scope: :post, local: true,
+                  html: { class: "flex space-x-2", data: { turbo: false }} do |form| %>
+      <footer class="bg-white p-4 shadow-inner">
+        <%= form.text_field :content, placeholder: "Enter Text", class: "flex-1 border border-gray-300 rounded-l-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-teal-200" %>
+        <%= form.submit "+ Button", class: "bg-teal-100 text-black font-semibold px-4 rounded-r-lg hover:bg-teal-200 transition" %>
+      </footer>
+    <% end %>
 
 </body>
 </html>
