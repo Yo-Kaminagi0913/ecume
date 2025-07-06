@@ -95,13 +95,13 @@
   </main>
 
   <!-- フッター：投稿フォーム -->
+  <footer class="bg-white p-4 shadow-inner">
     <%= form_with model: @post, scope: :post, local: true,
                   html: { class: "flex space-x-2", data: { turbo: false }} do |form| %>
-      <footer class="bg-white p-4 shadow-inner">
         <%= form.text_field :content, placeholder: "Enter Text", class: "flex-1 border border-gray-300 rounded-l-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-teal-200" %>
         <%= form.submit "+ Button", class: "bg-teal-100 text-black font-semibold px-4 rounded-r-lg hover:bg-teal-200 transition" %>
-      </footer>
     <% end %>
+  </footer>
 
 </body>
 </html>
