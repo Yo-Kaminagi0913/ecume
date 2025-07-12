@@ -1,8 +1,10 @@
 class PostsController < ApplicationController
+  before_action :require_login, only: [:create]
   
   def index
     # @posts = Post.recent.order(created_at: :desc)
     @posts = Post.all
+    @post = Post.new
   end
 
   def new

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2025_06_29_113849) do
+ActiveRecord::Schema[7.1].define(version: 2025_07_12_100416) do
   create_table "favorites", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.bigint "user_id", null: false
     t.bigint "post_id", null: false
@@ -23,7 +23,7 @@ ActiveRecord::Schema[7.1].define(version: 2025_06_29_113849) do
   create_table "posts", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.bigint "user_id", null: false
     t.text "content"
-    t.boolean "expired"
+    t.boolean "expired", default: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "favorites_count", default: 0, null: false

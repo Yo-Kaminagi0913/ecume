@@ -1,0 +1,13 @@
+<%= turbo_frame_tag dom_id(post, :favorite_button) do %>
+  <% if current_user.favorited?(post) %>
+    <%= button_to post_favorite_path(post), method: :delete, class: "favorite-button" do %>
+      <%# ここに塗りつぶされた星の画像を配置 %>
+      <div class="w-6 h-6 bg-yellow-400 rounded-full"></div>
+    <% end %>
+  <% else %>
+    <%= button_to post_favorite_path(post), method: :post, class: "favorite-button" do %>
+      <%# ここに空の星の画像を配置 %>
+      <div class="w-6 h-6 bg-gray-300 rounded-full"></div>
+    <% end %>
+  <% end %>
+<% end %>

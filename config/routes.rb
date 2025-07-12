@@ -21,7 +21,7 @@ Rails.application.routes.draw do
   resources :posts, only: [:index, :new, :create] do
     collection do
       # 24時間以内の投稿一覧
-      get 'recent', to: 'posts#index'
+      get 'recent', to: 'posts#recent'
       # お気に入り投稿一覧
       get 'favorites', to: 'posts#favorites'
     end
