@@ -8,9 +8,6 @@ gem "rails", "~> 7.1.0"
 # The original asset pipeline for Rails [https://github.com/rails/sprockets-rails]
 gem "sprockets-rails"
 
-# Use mysql as the database for Active Record
-gem "mysql2", "~> 0.5"
-
 # Use the Puma web server [https://github.com/puma/puma]
 gem "puma", ">= 5.0"
 
@@ -45,6 +42,9 @@ gem "bootsnap", require: false
 # gem "image_processing", "~> 1.2"
 
 group :development, :test do
+  # Use mysql as the database for Active Record
+  gem "mysql2", "~> 0.5"
+
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
   gem "debug", platforms: %i[ mri windows ]
 end
@@ -66,3 +66,9 @@ group :test do
   gem "capybara"
   gem "selenium-webdriver"
 end
+
+group :production do
+  gem "pg", "~> 1.1"
+end
+
+gem 'pry-rails'

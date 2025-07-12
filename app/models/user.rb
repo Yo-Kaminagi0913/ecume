@@ -23,6 +23,18 @@ class User < ApplicationRecord
   # コールバック
   before_save :downcase_email
 
+  def favorite(post)
+    favorite_posts << post
+  end
+
+  def unfavorite(post)
+    favorite_posts.destroy(post)
+  end
+
+  def favorited?(post)
+    favorite_posts.include?(post)
+  end
+
   private
 
   def downcase_email

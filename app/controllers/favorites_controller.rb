@@ -1,14 +1,28 @@
 class FavoritesController < ApplicationController
   before_action :require_login
+  before_action :set_post
+
   def create
-    post = Post.find(params[:post_id])
-    current_user.favorites.find_or_create_by!(post: post)
-    redirect_back(fallback_location: root_path)
+    current_user.favorite(@post)
+
+    respond_to do |format|
+      format.html { redirect_back(fallback_location: root_path) }
+      format.turbo_stream
+    end
   end
 
   def destroy
-    fav = current_user.favorites.find_by(post_id: params[:post_id])
-    fav&.destroy
-    redirect_back(fallback_location: root_path)
+    current_user.unfavorite(@post)
+
+    respond_to do |format|
+      format.html { redirect_back(fallback_location: root_path) }
+      format.turbo_stream
+    end
+  end
+
+  private
+
+  def set_post
+    @post = Post.find(params[:post_id])
   end
 end

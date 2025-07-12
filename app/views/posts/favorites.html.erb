@@ -1,8 +1,30 @@
-<!-- app/views/posts/favorites.html.erb -->
-<h1 class="sr-only">Favorites</h1>
-<ul class="divide-y divide-gray-200">
-  <% @favorite_posts.each do |post| %>
-    <% item = OpenStruct.new(title: post.content.truncate(20), subtitle: time_ago_in_words(post.created_at) + '前') %>
-    <%= render partial: "post_item", locals: { item: item } %>
-  <% end %>
-</ul>
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1.0">
+  <title>Favorites – écume</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-50 min-h-screen">
+
+  <!-- ヘッダー -->
+  <header class="bg-white shadow p-4 flex items-center justify-between">
+    <a href="/" class="text-gray-500">
+      <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+      </svg>
+    </a>
+    <h1 class="text-lg font-semibold">Favorites</h1>
+    <div class="w-6"></div>
+  </header>
+
+  <!-- メインコンテンツ -->
+  <main class="p-4">
+    <ul class="divide-y divide-gray-200">
+      <%= render partial: 'post_item', collection: @favorite_posts, as: :post %>
+    </ul>
+  </main>
+
+</body>
+</html>
