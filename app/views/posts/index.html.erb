@@ -95,7 +95,7 @@
   </main>
 
   <!-- フッター：投稿フォーム -->
-  <footer class="bg-white p-4 shadow-inner">
+  <footer class="bg-white p-4 shadow-inner pb-[env(safe-area-inset-bottom)]">
     <%= form_with model: @post, url: posts_path, scope: :post, local: true,
                   html: { class: "flex space-x-2", data: { turbo: false }} do |form| %>
         <%= form.text_field :content, placeholder: "Enter Text", class: "flex-1 border border-gray-300 rounded-l-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-teal-200" %>
