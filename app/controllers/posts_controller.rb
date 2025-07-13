@@ -1,5 +1,5 @@
 class PostsController < ApplicationController
-  before_action :require_login, only: [:create]
+  before_action :require_login, only: [:index, :create, :recent, :favorites]
   
   def index
     # @posts = Post.recent.order(created_at: :desc)
@@ -22,11 +22,11 @@ class PostsController < ApplicationController
   end
 
   def recent
-    @posts = Post.recent.order(created_at: :desc)
+    @posts = current_user.posts.recent.order(created_at: :desc)
   end
 
   def favorites
-    @favorite_posts = current_user.favorite_posts.where(expired: false).order(created_at: :desc)
+    @favorite_posts = current_user.favorite_posts.order(created_at: :desc)
   end
 
   private
