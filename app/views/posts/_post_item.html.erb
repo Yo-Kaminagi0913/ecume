@@ -1,12 +1,14 @@
 <li class="flex items-center space-x-4 py-4">
-  <!-- サムネイル／アイコン -->
-  <div class="flex-shrink-0 w-10 h-10 bg-gray-300 rounded-full"></div>
+  <%= link_to post_path(post), class: "flex items-center space-x-4 flex-1" do %>
+    <!-- サムネイル／アイコン -->
+    <div class="flex-shrink-0 w-10 h-10 bg-gray-300 rounded-full"></div>
 
-  <!-- タイトル・サブタイトル -->
-  <div class="flex-1 border-b border-gray-200 pb-2">
-    <p class="text-gray-800 font-medium"><%= post.content.truncate(20) %></p>
-    <p class="text-gray-500 text-sm"><%= time_ago_in_words(post.created_at) %>前</p>
-  </div>
+    <!-- タイトル・サブタイトル -->
+    <div class="flex-1 border-b border-gray-200 pb-2">
+      <p class="text-gray-800 font-medium"><%= post.content.truncate(20) %></p>
+      <p class="text-gray-500 text-sm"><%= time_ago_in_words(post.created_at) %>前</p>
+    </div>
+  <% end %>
 
   <%= render 'favorites/favorite_button', post: post %>
 </li>
