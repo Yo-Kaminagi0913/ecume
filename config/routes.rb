@@ -18,7 +18,7 @@ Rails.application.routes.draw do
   resources :users, only: [:new, :create, :show], path_names: { show: 'profile' }
 
   # 投稿
-  resources :posts, only: [:index, :new, :create] do
+  resources :posts, only: [:index, :new, :create, :show] do
     collection do
       # 24時間以内の投稿一覧
       get 'recent', to: 'posts#recent'

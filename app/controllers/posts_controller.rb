@@ -29,6 +29,10 @@ class PostsController < ApplicationController
     @favorite_posts = current_user.favorite_posts.order(created_at: :desc)
   end
 
+  def show
+    @post = Post.find(params[:id])
+  end
+
   private
 
   def post_params
